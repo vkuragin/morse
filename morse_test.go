@@ -22,6 +22,9 @@ func TestEncode(t *testing.T) {
 		{"a", ".-"},
 		{"A", ".-"},
 		{" ", " "},
+		{"1.7f", ".---- .-.-.- --... ..-."},
+		{"wtf?", ".-- - ..-. ..--.."},
+		{"1/7", ".---- -..-. --..."},
 	}
 	for _, tt := range tests {
 		t.Run(tt.str, func(t *testing.T) {
@@ -41,6 +44,9 @@ func TestDecode(t *testing.T) {
 		{".... ..- -.--  .--. .. --.. -.. .-", "HUY PIZDA"},
 		{".-", "A"},
 		{" ", " "},
+		{".---- .-.-.- --... ..-.", "1.7F"},
+		{".-- - ..-. ..--..", "WTF?"},
+		{".---- -..-. --...", "1/7"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.str, func(t *testing.T) {

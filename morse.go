@@ -13,23 +13,25 @@ type Morse struct {
 }
 
 func New() (*Morse, error) {
-	letters := "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+	letters := "ABCDEFGHIJKLMNOPQRSTUVWXYZ .,?/@1234567890"
 	codes := []string{".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....",
 		"..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.",
 		"--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-",
-		"-.--", "--..", " "}
+		"-.--", "--..", " ", ".-.-.-", "--..--", "..--..", "-..-.", ".--.-.",
+		".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", "-----",
+	}
 	if len(letters) != len(codes) {
 		return nil, fmt.Errorf("len(letters) != len(codes): %d, %d\n", len(letters), len(codes))
 	}
 
 	// populate letter-to-code mappings
-	charMap := make(map[rune]string, 27)
+	charMap := make(map[rune]string, len(letters))
 	for i, r := range letters {
 		charMap[r] = codes[i]
 	}
 
 	// populate code-to-letter mappings
-	codeMap := make(map[string]rune, 27)
+	codeMap := make(map[string]rune, len(codes))
 	for i, r := range letters {
 		codeMap[codes[i]] = r
 	}
